@@ -33,7 +33,7 @@ createConnection()
     app.use("/api/tenant/course", tenantCourseRoutes);
 
     app.listen(process.env.PORT || PORT, () =>
-      console.log(`Server up at http://localhost:${PORT}`)
+      console.log(`Server up at http://localhost:${PORT} Yeah!!!`)
     );
   })
   .catch((error) => console.log(error));
