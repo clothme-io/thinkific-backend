@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es5",
-      "es6"
-    ],
+    "lib": ["es5", "es6", "DOM"],
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": false,
@@ -21,8 +18,5 @@
     "strictPropertyInitialization": false
   },
   "compileOnSave": true,
-  "include": [
-    "./src/**/*.tsx",
-    "./src/**/*.ts"
-  ]
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }
