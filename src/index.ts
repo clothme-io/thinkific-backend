@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import "reflect-metadata";
 import express from "express";
 import cors from "cors";
-import { createConnection, getConnection, getRepository } from "typeorm";
+import { createConnection } from "typeorm";
 import { apiLimitter } from "./http/common/RateLimiter";
 
 var xss = require("xss-clean");
@@ -13,6 +13,7 @@ import {
   tenantCourseRoutes,
   tenantbadgeRoutes,
   tenantAuthRoutes,
+  healthCheck,
 } from "./http";
 
 const PORT = 5000;
@@ -26,6 +27,8 @@ app.use(express.json({ limit: "30kb" })); // Body limit is 10
 
 createConnection()
   .then(async () => {
+    // Health Check
+    app.use("/", healthCheck);
     // TENANT ROUTES
     app.use("/app", tenantAuthRoutes);
     app.use("/api/tenant/badge", tenantbadgeRoutes);
