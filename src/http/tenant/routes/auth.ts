@@ -80,6 +80,24 @@ router.get(
       });
       await sessionRes.save();
 
+      // create webhook
+      const createWebHook = await axios.post(
+        `https://api.thinkific.com/api/v2/webhooks?page=1&limit=25`,
+        {
+          topic: "lesson.created",
+          target_url: "http://mockserver.thinkific.com/webhooks",
+        },
+        {
+          headers: {
+            Authorization:
+              "Basic " +
+              Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          },
+        }
+      );
+
+      console.log("Web-hook =====", createWebHook);
+
       res.cookie("linkdIn_app", responseData.data.refresh_token, options);
       return res.redirect(`https://${domain}.thinkific.com/manage/apps`);
     } catch (error) {
