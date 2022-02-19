@@ -28,7 +28,7 @@ app.use(express.json({ limit: "30kb" })); // Body limit is 10
 createConnection()
   .then(async () => {
     // Health Check
-    app.use("/", healthCheck);
+    // app.use("/", healthCheck);
     // TENANT ROUTES
     app.use("/app", tenantAuthRoutes);
     app.use("/api/tenant/badge", tenantbadgeRoutes);
