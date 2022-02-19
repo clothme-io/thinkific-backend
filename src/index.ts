@@ -11,7 +11,7 @@ dotenv.config();
 import {
   tenantEmployeeRoutes,
   tenantCourseRoutes,
-  tenantbrandRoutes,
+  tenantbadgeRoutes,
   tenantAuthRoutes,
 } from "./http";
 
@@ -28,7 +28,7 @@ createConnection()
   .then(async () => {
     // TENANT ROUTES
     app.use("/app", tenantAuthRoutes);
-    app.use("/api/tenant/brand", tenantbrandRoutes);
+    app.use("/api/tenant/badge", tenantbadgeRoutes);
     app.use("/api/tenant/employee", tenantEmployeeRoutes);
     app.use("/api/tenant/course", tenantCourseRoutes);
 

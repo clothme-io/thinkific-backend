@@ -25,6 +25,7 @@ router.get(
     // const courseRepo = getRepository(Course);
     const tenantRepo = getRepository(Tenant);
     const sessionRepo = getRepository(Session);
+    const courseRepo = getRepository(Course);
 
     try {
       const tenantRes = await tenantRepo.findOne({
@@ -34,13 +35,11 @@ router.get(
       if (!tenantRes) {
         return res.status(400).send({ message: "Tenant does not exist" });
       }
-      // const courseRes = await courseRepo.findOne({
-      //   where: { tenant: tenantRes },
-      // });
 
       const sessionRes = await sessionRepo.findOne({
         where: { tenant: tenantRes },
       });
+
       // console.log("sessionRes Res: =====", sessionRes);
       let access_token = "";
       if (sessionRes) {
@@ -58,6 +57,14 @@ router.get(
           }
         );
         const responseData = remoteCourses.data;
+
+        // Save Course ID to DB
+        const courseRes = courseRepo.create({
+          shortId: responseData.id,
+          uuid: responseData.id,
+        });
+        await courseRes.save();
+
         return res.send({ courses: responseData });
       } catch (error: any) {
         // console.log("Courses ====", error.response);
