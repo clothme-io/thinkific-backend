@@ -93,11 +93,6 @@ router.get(
   async (req: Request, res: Response, next: NextFunction) => {}
 );
 
-router.post(
-  "/sign-out",
-  async (req: Request, res: Response, next: NextFunction) => {}
-);
-
 router.get(
   "/check-tenant-exist",
   async (req: Request, res: Response, next: NextFunction) => {
