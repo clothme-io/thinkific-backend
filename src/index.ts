@@ -28,12 +28,12 @@ app.use(express.json({ limit: "30kb" })); // Body limit is 10
 createConnection()
   .then(async () => {
     // Health Check
-    // app.use("/", healthCheck);
+    app.use("/app/v1", healthCheck);
     // TENANT ROUTES
-    app.use("/app", tenantAuthRoutes);
-    app.use("/api/tenant/badge", tenantbadgeRoutes);
-    app.use("/api/tenant/employee", tenantEmployeeRoutes);
-    app.use("/api/tenant/course", tenantCourseRoutes);
+    app.use("/app/v1", tenantAuthRoutes);
+    app.use("/api/v1/tenant/badge", tenantbadgeRoutes);
+    app.use("/api/v1/tenant/employee", tenantEmployeeRoutes);
+    app.use("/api/v1/tenant/course", tenantCourseRoutes);
 
     app.listen(process.env.PORT || PORT, () =>
       console.log(`Server up at http://localhost:${PORT} Yeah!!!`)
